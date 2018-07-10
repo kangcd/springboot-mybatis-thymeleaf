@@ -81,6 +81,19 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
+
+		<!-- 热部署组件 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>true</scope>
+		</dependency>
+		<!-- thymeleaf模板引擎 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -93,10 +106,6 @@
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
 				<filtering>false</filtering>
 			</resource>
 		</resources>
@@ -104,6 +113,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!-- fork:如果没有该配置，这个devtools不会起作用，即应用不会restart -->
+				</configuration>
 			</plugin>
 			<!-- mybatis 自动生成代码插件 -->
 			<plugin>
